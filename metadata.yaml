@@ -2,8 +2,15 @@
 image_name: jetty
 registries:
   - url: bcit.io
+  - url: docker.io
+    org_name: bcit
 labels:
   maintainer: "jesse@weisner.ca, chriswood.ca@gmail.com"
+versions:
+  '9.4-jre8':
+  '9.4-jre11':
+  '10.0.3-jre11':
+  '11.0.3-jre11':
 vars:
   tini_version: '0.19.0'
   de_version: '1.5'
