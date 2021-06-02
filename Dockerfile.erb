@@ -1,4 +1,7 @@
-FROM busybox
+FROM jetty:9.4-jre8
+
+USER root
+WORKDIR /
 
 <%= snippet('labels', binding) -%>
 
@@ -8,5 +11,9 @@ FROM busybox
 
 <%= snippet('tini', binding) -%>
 
+WORKDIR $JETTY_BASE
+USER jetty
+
+EXPOSE 8080
 ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
-CMD [ "init-loop" ]
+CMD ["java","-jar","/usr/local/jetty/start.jar"]
