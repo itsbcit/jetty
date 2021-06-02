@@ -1,5 +1,7 @@
-FROM jetty:9.4-jre8
 FROM <%= image.name_tag %>
+
+ENV TZ America/Vancouver
+ENV RUNUSER none
 
 USER root
 WORKDIR /
