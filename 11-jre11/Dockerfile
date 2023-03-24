@@ -1,4 +1,4 @@
-FROM jetty:11.0.3-jre11
+FROM jetty:11-jre11
 
 ENV TZ America/Vancouver
 ENV RUNUSER none
@@ -7,13 +7,19 @@ USER root
 WORKDIR /
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com"
-LABEL build_id="1631914455"
+LABEL build_id="1679680623"
 
 # Add docker-entrypoint script base
 ADD https://github.com/itsbcit/docker-entrypoint/releases/download/v1.5/docker-entrypoint.tar.gz /docker-entrypoint.tar.gz
 RUN tar zxvf docker-entrypoint.tar.gz && rm -f docker-entrypoint.tar.gz \
  && chmod -R 555 /docker-entrypoint.* \
- && chmod 664 /etc/passwd /etc/group /etc/shadow \
+ && echo "UTC" > /etc/timezone \
+ && ln -sf /usr/share/zoneinfo/UTC /etc/localtime \
+ && chmod 664 /etc/passwd \
+              /etc/group \
+              /etc/shadow \
+              /etc/timezone \
+              /etc/localtime \
  && chown 0:0 /etc/shadow \
  && chmod 775 /etc
 

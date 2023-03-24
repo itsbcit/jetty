@@ -1,4 +1,4 @@
-FROM jetty:9.4-jre8
+FROM jetty:10-jre11
 
 ENV TZ America/Vancouver
 ENV RUNUSER none
